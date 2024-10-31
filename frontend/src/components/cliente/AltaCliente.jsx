@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function AltaCliente() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center">
             <div className="max-w-lg w-full p-8 bg-white shadow-md rounded-lg">
                 <h1 className="text-3xl text-center font-semibold mb-8">Alta de cliente</h1>
                 

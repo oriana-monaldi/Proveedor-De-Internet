@@ -6,7 +6,7 @@ function Boton({ nombre }) {
     return (
         <div>
             <Stack direction="row" spacing={2}>
-                <Button variant="outlined">{nombre}</Button>
+                <Button variant="contained">{nombre}</Button>
             </Stack>
         </div>
     );

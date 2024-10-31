@@ -15,7 +15,7 @@ function EditarConexion() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center">
             <div className="max-w-3xl w-full p-8 bg-white shadow-md rounded-lg">
                 <h1 className="text-3xl text-center font-semibold mb-8">Editar información de la Conexión</h1>
 
@@ -39,7 +39,7 @@ function EditarConexion() {
                             onChange={handleChange}
                             className="w-64 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition ease-in-out duration-200"
                         >
-                            <option value="">Selecciona una opción</option>
+                            <option value="" disabled>Selecciona una opción</option>
                             <option value="opcion1">50 megas</option>
                             <option value="opcion2">100 megas</option>
                             <option value="opcion3">200 megas</option>

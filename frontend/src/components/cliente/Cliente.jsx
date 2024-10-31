@@ -6,12 +6,12 @@ import Buscar from '../Buscar'
 
 function Cliente() {
     return (
-        <div>
-            <h1 className='text-3xl mt-6 mb-20 text-center'>Clientes</h1>
+        <div className='max-w-[1400px] mx-auto '>
+            <h1 className='text-3xl mt-10 mb-20 text-center font-bold text-white'>Clientes</h1>
             <div className='flex flex-row justify-between m-6  '>
                 <Buscar placeholder='Buscar por apellido del cliente'/>
                 <Link to='/alta-cliente'>
-                    <IoAddCircle size= {45} />
+                    <IoAddCircle className='text-white' size= {45} />
                 </Link>
             </div>
             <Tabla/>

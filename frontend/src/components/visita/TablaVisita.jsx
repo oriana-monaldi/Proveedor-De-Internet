@@ -85,7 +85,7 @@ export default function CustomizedTables() {
                                 <StyledTableCell>{row.tecnico}</StyledTableCell>
                                 <StyledTableCell>{row.observacion}</StyledTableCell>
                                 <StyledTableCell align="center">
-                                    <div className='flex'>
+                                <div className='flex item-center justify-center'>
                                         <Link to='/editar-visita'>
                                             <CiEdit size={30} style={{ cursor: 'pointer', marginRight: '10px' }} />
                                         </Link>

@@ -86,7 +86,7 @@ export default function CustomizedTables() {
                             <StyledTableCell>{row.dni}</StyledTableCell>
                             <StyledTableCell>{row.telefono}</StyledTableCell>
                             <StyledTableCell align="center">
-                                <div className='flex'>
+                                <div className='flex item-center justify-center'>
                                     <Link to='/editar-cliente'>
                                         <CiEdit size={30} />
                                     </Link>

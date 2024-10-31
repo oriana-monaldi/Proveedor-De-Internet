@@ -15,7 +15,7 @@ function ProgramarVisita() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center ">
             <div className="max-w-3xl w-full p-8 bg-white shadow-md rounded-lg">
                 <h1 className="text-3xl text-center font-semibold mb-8">Programar visita</h1>
 
@@ -31,7 +31,7 @@ function ProgramarVisita() {
                             onChange={handleChange}
                             className="w-64 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition ease-in-out duration-200"
                         >
-                            <option value="">Hora</option>
+                            <option value="" disabled>Hora</option>
                             <option value="opcion1">09:00</option>
                             <option value="opcion2">09:15</option>
                             <option value="opcion3">09:30</option>

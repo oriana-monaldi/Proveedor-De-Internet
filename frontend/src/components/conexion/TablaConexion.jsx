@@ -90,7 +90,7 @@ export default function CustomizedTables() {
                                 <StyledTableCell>{row.localidad}</StyledTableCell>
                                 <StyledTableCell>{row.provincia}</StyledTableCell>
                                 <StyledTableCell align="center">
-                                    <div className='flex'>
+                                <div className='flex item-center justify-center'>
                                         <Link to='/editar-conexion'>
                                             <CiEdit size={30} style={{ cursor: 'pointer', marginRight: '10px' }} />
                                         </Link>

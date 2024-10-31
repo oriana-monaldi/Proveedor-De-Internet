@@ -6,12 +6,12 @@ import Buscar from '../Buscar'
 
 function Conexion() {
     return (
-        <div>
-            <h1 className='text-3xl mt-6 mb-20 text-center'>Conexión</h1>
+        <div className='max-w-[1400px] mx-auto '>
+            <h1 className='text-3xl mt-10 mb-20 text-center text-white font-bold'>Conexión</h1>
             <div className='flex flex-row justify-between m-6  '>
                 <Buscar placeholder='Buscar por numero de conexión'/>
                 <Link to='/alta-conexion'>
-                    <IoAddCircle size= {45} />
+                    <IoAddCircle className='text-white' size= {45} />
                 </Link>
             </div>
             <TablaConexion/>
