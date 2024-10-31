@@ -17,7 +17,7 @@ function EditarVisita() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="max-w-3xl w-full p-8 bg-white shadow-md rounded-lg">
-                <h1 className="text-3xl text-center font-semibold mb-8">Editar datos de la visita</h1>
+                <h1 className="text-3xl text-center font-semibold mb-8">Editar información acerca de la visita</h1>
 
                 <div className="flex flex-col space-y-8">
                     <div className="flex justify-around items-center space-x-4">

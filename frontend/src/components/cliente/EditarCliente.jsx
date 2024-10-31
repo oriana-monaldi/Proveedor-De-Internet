@@ -7,7 +7,7 @@ function EditarCliente() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="max-w-lg w-full p-8 bg-white shadow-md rounded-lg">
-                <h1 className="text-3xl text-center font-semibold mb-8">Editar datos del cliente</h1>
+                <h1 className="text-3xl text-center font-semibold mb-8">Editar información del cliente</h1>
                 
                 <div className="flex flex-col space-y-6">
                     <TextField
