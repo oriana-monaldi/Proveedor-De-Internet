@@ -38,12 +38,12 @@ function EditarVisita() {
                 </div>
                 <div className='flex justify-end p-8'>
                     <div className='p-4'>
-                        <Link to='/visita'>
+                        <Link to='/conexion'>
                             <Button nombre="Aceptar"/>
                         </Link>
                     </div>
                     <div className='p-4'>
-                        <Link to='/visita'>
+                        <Link to='/conexion'>
                             <Button nombre="Cancelar"/>
                         </Link>
                     </div>

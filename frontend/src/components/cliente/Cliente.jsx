@@ -2,16 +2,18 @@ import React from 'react'
 import Tabla from './Tabla'
 import { IoAddCircle } from "react-icons/io5";
 import  {Link} from 'react-router-dom'
+import Buscar from '../Buscar'
 
 function Cliente() {
     return (
         <div>
-            <h1 className='text-2xl mb-4'>Clientes</h1>
+            <h1 className='text-3xl mt-6 mb-20'>Clientes</h1>
+            <div className='flex flex-row justify-between '>
+                <Buscar placeholder='Buscar por apellido del cliente'/>
                 <Link to='/alta-cliente'>
-                <div className='flex items-center justify-end pr-8 pb-4'>
-                    <IoAddCircle size= {60} />
-                </div>
+                    <IoAddCircle size= {45} />
                 </Link>
+            </div>
             <Tabla/>
         </div>
     )

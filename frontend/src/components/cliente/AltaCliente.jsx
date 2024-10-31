@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 function AltaCliente() {
     return (
         <div>
-            <h1 className='text-2xl'> Alta de cliente </h1>
+            <h1 className='text-3xl p-4'> Alta de cliente </h1>
             <div className='flex flex-col p-6 '>
                 <div className='p-4 flex items-center justify-center'>
                     <TextField
@@ -16,7 +16,7 @@ function AltaCliente() {
                         label="Nombre"
                     />
                 </div>
-                <div className='p-4'>
+                <div className='p-6'>
 
                     <TextField
                         hiddenLabel
@@ -25,7 +25,7 @@ function AltaCliente() {
                         label="Apellido"                        
                     />
                 </div>
-                <div className='p-4'>
+                <div className='p-6'>
                     <TextField
                         hiddenLabel
                         id="filled-hidden-label-normal"
@@ -34,7 +34,7 @@ function AltaCliente() {
                     />
                     
                 </div>                
-                <div className='p-4'>
+                <div className='p-6'>
                     <TextField
                         hiddenLabel
                         id="filled-hidden-label-normal"
@@ -42,7 +42,7 @@ function AltaCliente() {
                         label="Telefono"
                     />
                 </div>
-                <div className='flex justify-end p-8'>
+                <div className='flex justify-end pt-28'>
                     <div className='p-4'>
                         <Link to='/cliente'>
                             <Button nombre="Aceptar"/>

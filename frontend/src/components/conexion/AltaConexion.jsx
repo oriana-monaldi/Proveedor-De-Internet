@@ -6,6 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from "react";
 import { Link } from 'react-router-dom'
 import Button from '../Boton'
+import Buscar from '../Buscar'
 
 function AltaCliente() {
     const [opcion, setOpcion] = useState("");
@@ -15,8 +16,8 @@ function AltaCliente() {
     };
     return (
         <div>
-            <h1 className='text-2xl'> Alta de conexión </h1>
-            <div className='flex flex-col p-6 '>
+            <h1 className='text-3xl p-4'> Alta de conexión </h1>
+            <div className='flex flex-col p-4 '>
                 <div className='flex justify-around'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker />
@@ -29,36 +30,37 @@ function AltaCliente() {
                     />
                 </div>
 
-                <div className="flex flex-col items-center p-6">
+                <div className="p-10">
                     <label htmlFor="opciones" className="text-lg font-medium text-gray-700 mb-2"> </label>
                     <select
                         id="opciones"
                         value={opcion}
                         onChange={handleChange}
-                        className="w-48 p-2 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition ease-in-out duration-200"
+                        className="w-64 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition ease-in-out duration-200"
                     >
                         <option value="">Servicio</option>
                         <option value="opcion1">50 megas</option>
                         <option value="opcion2">100 megas</option>
                         <option value="opcion3">200 megas</option>
                     </select>
-
                 </div>
-                <div className='p-4'>
-                    <h2 className='text-lg p-4'>Domicilio</h2>
-                    <div className='flex justify-around p-4'>
-                    <TextField
-                        hiddenLabel
-                        id="filled-hidden-label-normal"
-                        variant="filled"
-                        label="Calle"
-                    />
+
+                
+                <div className='p-2'>
+                    <h2 className='text-xl'>Domicilio</h2>
+                    <div className='flex justify-around p-2'>
                         <TextField
                             hiddenLabel
                             id="filled-hidden-label-normal"
                             variant="filled"
-                            label="Numero"
+                            label="Calle"
                         />
+                            <TextField
+                                hiddenLabel
+                                id="filled-hidden-label-normal"
+                                variant="filled"
+                                label="Numero"
+                            />
                     </div>
                     <div className='flex justify-around p-4'>
                         <TextField
@@ -74,22 +76,29 @@ function AltaCliente() {
                                 label="Depto"
                             />
                     </div>
-                    <div className='flex justify-end p-8'>
+                    <div>
+                        <div className='flex item-center justify-center mt-6 mb-6'>
+                            <Buscar  placeholder='Provincia'/>
+                        </div>
+                        <div className='flex item-center justify-center mt-6 mb-6'>
+                            <Buscar placeholder='Localidad'/>
+                        </div>
+                    </div>
+                    <div className='flex justify-end pt-28'>
+                        <div className='p-4'>
+                            <Link to='/conexion'>
+                                <Button nombre="Aceptar"/>
+                            </Link>
+                        </div>
+                        <div className='p-4'>
+                            <Link to='/conexion'>
+                                <Button nombre="Cancelar"/>
+                            </Link>
+                        </div>
+                    </div>
 
-                </div>
                 </div>  
-                <div className='flex justify-end p-8'>
-                    <div className='p-4'>
-                        <Link to='/conexion'>
-                            <Button nombre="Aceptar"/>
-                        </Link>
-                    </div>
-                    <div className='p-4'>
-                        <Link to='/conexion'>
-                            <Button nombre="Cancelar"/>
-                        </Link>
-                    </div>
-                </div>
+
             </div>
         </div>
     )

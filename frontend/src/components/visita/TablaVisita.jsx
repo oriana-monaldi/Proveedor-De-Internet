@@ -49,26 +49,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(numero, fecha, hora, tecnico, observacion) {
-    return { numero, fecha, hora, tecnico, observacion };
+function createData(fecha, hora, tecnico, observacion) {
+    return { fecha, hora, tecnico, observacion };
 }
 
 const rows = [
-    createData(1, '2024-01-15', '10:00', 'Técnico A', 'Observación 1'),
-    createData(2, '2024-02-10', '11:00', 'Técnico B', 'Observación 2'),
-    createData(3, '2024-03-05', '12:00', 'Técnico C', 'Observación 3'),
-    createData(4, '2024-04-20', '13:00', 'Técnico D', 'Observación 4'),
-    createData(5, '2024-05-15', '14:00', 'Técnico E', 'Observación 5'),
+    createData('2024-01-15', '10:00', 'Técnico A', 'Observación 1'),
+    createData('2024-02-10', '11:00', 'Técnico B', 'Observación 2'),
+    createData('2024-03-05', '12:00', 'Técnico C', 'Observación 3'),
+    createData('2024-04-20', '13:00', 'Técnico D', 'Observación 4'),
+    createData('2024-05-15', '14:00', 'Técnico E', 'Observación 5'),
 ];
 
 export default function CustomizedTables() {
     return (
-        <div>
+        <div className='mt-6'>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Número</StyledTableCell>
                             <StyledTableCell>Fecha</StyledTableCell>
                             <StyledTableCell>Hora</StyledTableCell>
                             <StyledTableCell>Técnico</StyledTableCell>
@@ -77,12 +76,11 @@ export default function CustomizedTables() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.numero}>
+                        {rows.map((row, index) => (
+                            <StyledTableRow key={index}>
                                 <StyledTableCell component="th" scope="row">
-                                    {row.numero}
+                                    {row.fecha}
                                 </StyledTableCell>
-                                <StyledTableCell>{row.fecha}</StyledTableCell>
                                 <StyledTableCell>{row.hora}</StyledTableCell>
                                 <StyledTableCell>{row.tecnico}</StyledTableCell>
                                 <StyledTableCell>{row.observacion}</StyledTableCell>
