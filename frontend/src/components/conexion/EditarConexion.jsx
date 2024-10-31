@@ -4,10 +4,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '../Boton'
 
-function AltaCliente() {
+function EditarConexion() {
     const [opcion, setOpcion] = useState("");
 
     const handleChange = (e) => {
@@ -15,7 +15,7 @@ function AltaCliente() {
     };
     return (
         <div>
-            <h1 className='text-2xl'> Alta de conexión </h1>
+            <h1 className='text-2xl'> Editar datos de la conexión </h1>
             <div className='flex flex-col p-6 '>
                 <div className='flex justify-around'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -74,25 +74,32 @@ function AltaCliente() {
                                 label="Depto"
                             />
                     </div>
+                    <div>
+                    <div className='p-4'>
+                        <TextField
+                            hiddenLabel
+                            id="filled-hidden-label-normal"
+                            variant="filled"
+                            label="Telefono"
+                        />
+                    </div>
                     <div className='flex justify-end p-8'>
-
+                        <div className='p-4'>
+                            <Link to='/conexion'>
+                                <Button nombre="Aceptar"/>
+                            </Link>
+                        </div>
+                        <div className='p-4'>
+                            <Link to='/conexion'>
+                                <Button nombre="Cancelar"/>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 </div>  
-                <div className='flex justify-end p-8'>
-                    <div className='p-4'>
-                        <Link to='/conexion'>
-                            <Button nombre="Aceptar"/>
-                        </Link>
-                    </div>
-                    <div className='p-4'>
-                        <Link to='/conexion'>
-                            <Button nombre="Cancelar"/>
-                        </Link>
-                    </div>
-                </div>
             </div>
         </div>
     )
 }
 
-export default AltaCliente
+export default EditarConexion

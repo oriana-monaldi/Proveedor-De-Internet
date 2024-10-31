@@ -1,12 +1,12 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '../Boton';
-import {Link} from 'react-router-dom'
+import  {Link} from 'react-router-dom'
 
-function AltaCliente() {
+function EditarCliente() {
     return (
         <div>
-            <h1 className='text-2xl'> Alta de cliente </h1>
+            <h1 className='text-2xl'> Editar datos del cliente </h1>
             <div className='flex flex-col p-6 '>
                 <div className='p-4 flex items-center justify-center'>
                     <TextField
@@ -17,7 +17,6 @@ function AltaCliente() {
                     />
                 </div>
                 <div className='p-4'>
-
                     <TextField
                         hiddenLabel
                         id="filled-hidden-label-normal"
@@ -59,4 +58,4 @@ function AltaCliente() {
     )
 }
 
-export default AltaCliente
+export default EditarCliente
