@@ -9,12 +9,14 @@ import AltaVisita from './components/visita/AltaVisita'
 import EditarCliente from './components/cliente/EditarCliente'
 import EditarConexion from './components/conexion/EditarConexion'
 import EditarVisita from './components/visita/EditarVisita'
+import Main from './components/Main'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Main/>}></Route>
         <Route path='/cliente' element={<Cliente/>}></Route>
         <Route path='/alta-cliente' element={<AltaCliente/>}></Route>
         <Route path='/editar-cliente' element={<EditarCliente/>}></Route>
