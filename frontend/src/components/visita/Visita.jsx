@@ -7,8 +7,8 @@ import Buscar from '../Buscar'
 function Visita() {
     return (
         <div>
-            <h1 className='text-3xl mt-6 mb-20'>Visitas de la conexión</h1>
-            <div className='flex flex-row justify-between '>
+            <h1 className='text-3xl mt-6 mb-20 text-center'>Visitas de la conexión</h1>
+            <div className='flex flex-row justify-between m-6  '>
                 <Buscar placeholder='Buscar...'/>
                 <Link to='/alta-visita'>
                     <IoAddCircle size= {45} />

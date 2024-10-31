@@ -64,7 +64,7 @@ const rows = [
 
 export default function CustomizedTables() {
     return (
-    <div className='mt-6'>
+        <div className='m-6 mt-16'>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>

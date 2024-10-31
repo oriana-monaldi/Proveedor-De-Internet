@@ -1,61 +1,48 @@
-import React from 'react'
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '../Boton';
-import  {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 function EditarCliente() {
     return (
-        <div>
-            <h1 className='text-2xl'> Editar datos del cliente </h1>
-            <div className='flex flex-col p-6 '>
-                <div className='p-4 flex items-center justify-center'>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <div className="max-w-lg w-full p-8 bg-white shadow-md rounded-lg">
+                <h1 className="text-3xl text-center font-semibold mb-8">Editar datos del cliente</h1>
+                
+                <div className="flex flex-col space-y-6">
                     <TextField
-                        hiddenLabel
-                        id="filled-hidden-label-normal"
                         variant="filled"
                         label="Nombre"
+                        fullWidth
                     />
-                </div>
-                <div className='p-4'>
                     <TextField
-                        hiddenLabel
-                        id="filled-hidden-label-normal"
                         variant="filled"
-                        label="Apellido"                        
+                        label="Apellido"
+                        fullWidth
                     />
-                </div>
-                <div className='p-4'>
                     <TextField
-                        hiddenLabel
-                        id="filled-hidden-label-normal"
                         variant="filled"
                         label="DNI"
+                        fullWidth
                     />
-                    
-                </div>                
-                <div className='p-4'>
                     <TextField
-                        hiddenLabel
-                        id="filled-hidden-label-normal"
                         variant="filled"
-                        label="Telefono"
+                        label="Teléfono"
+                        fullWidth
                     />
                 </div>
-                <div className='flex justify-end p-8'>
-                    <div className='p-4'>
-                        <Link to='/cliente'>
-                            <Button nombre="Aceptar"/>
-                        </Link>
-                    </div>
-                    <div className='p-4'>
-                        <Link to='/cliente'>
-                            <Button nombre="Cancelar"/>
-                        </Link>
-                    </div>
+
+                <div className="flex justify-end space-x-4 mt-12">
+                    <Link to="/cliente">
+                        <Button nombre="Aceptar" className="px-8 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"/>
+                    </Link>
+                    <Link to="/cliente">
+                        <Button nombre="Cancelar" className="px-8 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition duration-300"/>
+                    </Link>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default EditarCliente
+export default EditarCliente;

@@ -7,8 +7,8 @@ import Buscar from '../Buscar'
 function Conexion() {
     return (
         <div>
-            <h1 className='text-3xl mt-6 mb-20'>Conexiones del cliente .....</h1>
-            <div className='flex flex-row justify-between '>
+            <h1 className='text-3xl mt-6 mb-20 text-center'>Conexión</h1>
+            <div className='flex flex-row justify-between m-6  '>
                 <Buscar placeholder='Buscar por numero de conexión'/>
                 <Link to='/alta-conexion'>
                     <IoAddCircle size= {45} />
