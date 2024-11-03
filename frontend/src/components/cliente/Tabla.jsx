@@ -68,7 +68,7 @@ export default function CustomizedTables() {
     if (loading) {
         return (
             <div className="m-6 mt-16 flex justify-center items-center">
-                <p>Cargando clientes...</p>
+                <p className='text-white'>Cargando clientes...</p>
             </div>
         );
     }

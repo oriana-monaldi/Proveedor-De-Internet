@@ -69,7 +69,7 @@ export default function CustomizedTables() {
     if (loading) {
         return (
             <div className="m-6 mt-16 flex justify-center items-center">
-                <p>Cargando conexiones...</p>
+                <p className='text-white'>Cargando conexiones...</p>
             </div>
         );
     }
@@ -96,10 +96,10 @@ export default function CustomizedTables() {
                                     {row.numero}
                                 </StyledTableCell>
                                 <StyledTableCell>{row.fechaAlta}</StyledTableCell>
-                                <StyledTableCell>{row.servicio}</StyledTableCell>
-                                <StyledTableCell>{row.domicilio}</StyledTableCell>
-                                <StyledTableCell>{row.localidad}</StyledTableCell>
-                                <StyledTableCell>{row.provincia}</StyledTableCell>
+                                <StyledTableCell>{row.servicio.nombre}</StyledTableCell>
+                                <StyledTableCell>Calle {row.domicilio.calle} N {row.domicilio.numero} P {row.domicilio.piso && row.domicilio.piso} Dpto {row.domicilio.departamento && row.domicilio.departamento}</StyledTableCell>
+                                <StyledTableCell>{row.domicilio.localidad.nombre}</StyledTableCell>
+                                <StyledTableCell>{row.domicilio.localidad.provincia.nombre}</StyledTableCell>
                                 <StyledTableCell align="center">
                                 <div className='flex item-center justify-center'>
                                         <Link to='/editar-conexion'>

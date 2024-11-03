@@ -68,7 +68,7 @@ export default function CustomizedTables() {
     if (loading) {
         return (
             <div className="m-6 mt-16 flex justify-center items-center">
-                <p>Cargando visitas...</p>
+                <p className='text-white'>Cargando visitas...</p>
             </div>
         );
     }
@@ -92,7 +92,7 @@ export default function CustomizedTables() {
                                     {row.fecha}
                                 </StyledTableCell>
                                 <StyledTableCell>{row.hora}</StyledTableCell>
-                                <StyledTableCell>{row.tecnico}</StyledTableCell>
+                                <StyledTableCell>{row.empleado.nombre} {row.empleado.apellido}</StyledTableCell>
                                 <StyledTableCell>{row.observacion}</StyledTableCell>
                                 <StyledTableCell align="center">
                                 <div className='flex item-center justify-center'>
