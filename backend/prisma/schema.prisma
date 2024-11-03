@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cliente {
+  ID       Int        @id @default(autoincrement())
+  apellido String     @db.VarChar(45)
+  dni      Int
+  nombre   String     @db.VarChar(45)
+  telefono Int
+  conexion conexion[]
+}
+
+model conexion {
+  ID             Int              @id @default(autoincrement())
+  fechaAlta      DateTime         @db.Date
+  numero         Int
+  clienteID      Int
+  servicioID     Int
+  cliente        cliente          @relation(fields: [clienteID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "conexion_ibfk_1")
+  servicio       servicio         @relation(fields: [servicioID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "conexion_ibfk_2")
+  domicilio      domicilio[]
+  soportetecnico soportetecnico[]
+  visita         visita[]
+
+  @@index([clienteID], map: "fk_Conexion_Cliente_idx")
+  @@index([servicioID], map: "fk_Conexion_Servicio1_idx")
+}
+
+model domicilio {
+  ID           Int       @id @default(autoincrement())
+  calle        Int
+  departamento String?   @db.VarChar(45)
+  numero       Int
+  piso         String?   @db.VarChar(45)
+  localidadID  Int
+  conexionID   Int
+  localidad    localidad @relation(fields: [localidadID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "domicilio_ibfk_1")
+  conexion     conexion  @relation(fields: [conexionID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "domicilio_ibfk_2")
+
+  @@index([conexionID], map: "fk_Domicilio_Conexion1_idx")
+  @@index([localidadID], map: "fk_Domicilio_Localidad1_idx")
+}
+
+model empleado {
+  ID             Int              @id @default(autoincrement())
+  apellido       String           @db.VarChar(45)
+  legajo         Int
+  nombre         String           @db.VarChar(45)
+  soportetecnico soportetecnico[]
+  visita         visita[]
+}
+
+model localidad {
+  ID           Int         @id @default(autoincrement())
+  codigoPostal Int
+  nombre       String      @db.VarChar(45)
+  provinciaID  Int
+  domicilio    domicilio[]
+  provincia    provincia   @relation(fields: [provinciaID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "localidad_ibfk_1")
+
+  @@index([provinciaID], map: "fk_Localidad_Provincia1_idx")
+}
+
+model provincia {
+  ID        Int         @id @default(autoincrement())
+  nombre    String      @db.VarChar(45)
+  localidad localidad[]
+}
+
+model servicio {
+  ID            Int        @id @default(autoincrement())
+  cantidadMegas Int
+  nombre        String     @db.VarChar(45)
+  conexion      conexion[]
+}
+
+model soportetecnico {
+  ID              Int      @id @default(autoincrement())
+  fecha           DateTime @db.Date
+  hora            DateTime @db.Time(0)
+  motivo          String   @db.VarChar(45)
+  numeroOperacion Int
+  conexionID      Int
+  operadorID      Int
+  conexion        conexion @relation(fields: [conexionID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "soportetecnico_ibfk_1")
+  empleado        empleado @relation(fields: [operadorID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "soportetecnico_ibfk_2")
+
+  @@index([conexionID], map: "fk_SoporteTecnico_Conexion1_idx")
+  @@index([operadorID], map: "fk_SoporteTecnico_Empleado1_idx")
+}
+
+model visita {
+  ID           Int                 @id @default(autoincrement())
+  fecha        DateTime            @db.Date
+  hora         DateTime            @db.Time(0)
+  observacion  String              @db.VarChar(45)
+  visitaEstado visita_visitaEstado
+  conexionID   Int
+  tecnicoID    Int
+  conexion     conexion            @relation(fields: [conexionID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "visita_ibfk_1")
+  empleado     empleado            @relation(fields: [tecnicoID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "visita_ibfk_2")
+
+  @@index([conexionID], map: "fk_Visita_Conexion1_idx")
+  @@index([tecnicoID], map: "fk_Visita_Empleado1_idx")
+}
+
+enum visita_visitaEstado {
+  Programada
+  Resuelta
+  Reprogramada
+}
