@@ -2,7 +2,18 @@ import { prisma } from "../app.js";
 
 export class VisitaModel{
     static async getAll(){
-        return prisma.visita.findMany();
+        const visitas = await prisma.visita.findMany({
+            include: {
+                empleado: true,
+            }
+        })
+
+        const visitasFormatted = visitas.map(visita => ({
+            ...visita,
+            fecha: visita.fecha.toISOString().split('T')[0],  
+            hora: visita.hora.toISOString().split('T')[1].slice(0, 5)
+        }));
+        return visitasFormatted;
     }
     
     static async byId(id){

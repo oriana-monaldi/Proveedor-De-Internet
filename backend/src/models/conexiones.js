@@ -2,11 +2,32 @@ import { prisma } from "../app.js";
 
 export class ConexionModel{
     static async getAll(){
-        return prisma.conexion.findMany();
+        const conexiones = await prisma.conexion.findMany({
+            include: {
+                servicio: true,
+                cliente: true,
+                domicilio: {
+                    include: {
+                        localidad: {
+                            include: {
+                                provincia: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const conexionesFormatted = conexiones.map(conexion => ({
+            ...conexion,
+            fechaAlta: conexion.fechaAlta.toISOString().split('T')[0]  // Esto toma solo la parte de la fecha
+        }));
+
+        return conexionesFormatted;
     }
     
     static async byId(id){
-        return prisma.conexion.findUnique({
+        return await prisma.conexion.findUnique({
             where: {
                 ID: parseInt(id)
             }
@@ -14,13 +35,13 @@ export class ConexionModel{
     }
 
     static async create(conexion){
-        return prisma.conexion.create({
+        return await prisma.conexion.create({
             data: conexion
         })
     }
 
     static async update(id, conexion){
-        return prisma.conexion.update({
+        return await prisma.conexion.update({
             where: {
                 ID: parseInt(id)
             },
@@ -29,7 +50,7 @@ export class ConexionModel{
     }
 
     static async delete(id){
-        return prisma.conexion.delete({
+        return await prisma.conexion.delete({
             where: {
                 ID: parseInt(id)
             }

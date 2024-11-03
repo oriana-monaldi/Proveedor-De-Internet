@@ -22,28 +22,28 @@ model conexion {
   numero         Int
   clienteID      Int
   servicioID     Int
+  domicilioID    Int
   cliente        cliente          @relation(fields: [clienteID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "conexion_ibfk_1")
   servicio       servicio         @relation(fields: [servicioID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "conexion_ibfk_2")
-  domicilio      domicilio[]
+  domicilio      domicilio        @relation(fields: [domicilioID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "conexion_ibfk_3")
   soportetecnico soportetecnico[]
   visita         visita[]
 
   @@index([clienteID], map: "fk_Conexion_Cliente_idx")
   @@index([servicioID], map: "fk_Conexion_Servicio1_idx")
+  @@index([domicilioID], map: "domicilioID")
 }
 
 model domicilio {
-  ID           Int       @id @default(autoincrement())
+  ID           Int        @id @default(autoincrement())
   calle        Int
-  departamento String?   @db.VarChar(45)
+  departamento String?    @db.VarChar(45)
   numero       Int
-  piso         String?   @db.VarChar(45)
+  piso         String?    @db.VarChar(45)
   localidadID  Int
-  conexionID   Int
-  localidad    localidad @relation(fields: [localidadID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "domicilio_ibfk_1")
-  conexion     conexion  @relation(fields: [conexionID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "domicilio_ibfk_2")
+  conexion     conexion[]
+  localidad    localidad  @relation(fields: [localidadID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "domicilio_ibfk_1")
 
-  @@index([conexionID], map: "fk_Domicilio_Conexion1_idx")
   @@index([localidadID], map: "fk_Domicilio_Localidad1_idx")
 }
 
