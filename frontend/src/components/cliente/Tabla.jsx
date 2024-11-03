@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +10,9 @@ import Button from '../Boton';
 import { Link } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
-import swal from 'sweetalert'; 
+import swal from 'sweetalert';
+import { useEffect, useState } from 'react';
+import { getClientes } from '../../../services/clientes';
 
 function alertDelete() {
     swal({
@@ -50,58 +51,77 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(apellido, nombre, dni, telefono) {
-    return { apellido, nombre, dni, telefono };
-}
-
-const rows = [
-    createData('González', 'Juan', '12345678', '1234-5678'),
-    createData('Martínez', 'Ana', '87654321', '5678-1234'),
-    createData('Pérez', 'Carlos', '45678912', '4321-8765'),
-    createData('Rodríguez', 'Lucía', '23456789', '9876-5432'),
-    createData('Gómez', 'María', '34567891', '6789-4321'),
-];
-
 export default function CustomizedTables() {
+    const [clientes, setClientes] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect( () => {
+        setLoading(true);
+        getClientes().then( (data) => {
+            setClientes(data)
+            console.log(clientes)
+        }).finally( () => {
+            setLoading(false);
+        })
+    },[])
+
+    if (loading) {
+        return (
+            <div className="m-6 mt-16 flex justify-center items-center">
+                <p>Cargando clientes...</p>
+            </div>
+        );
+    }
+
+
     return (
         <div className='m-6 mt-16'>
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Apellido</StyledTableCell>
-                        <StyledTableCell>Nombre</StyledTableCell>
-                        <StyledTableCell>DNI</StyledTableCell>
-                        <StyledTableCell>Teléfono</StyledTableCell>
-                        <StyledTableCell align="center">Acciones</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.dni}>
-                            <StyledTableCell component="th" scope="row">
-                                {row.apellido}
-                            </StyledTableCell>
-                            <StyledTableCell>{row.nombre}</StyledTableCell>
-                            <StyledTableCell>{row.dni}</StyledTableCell>
-                            <StyledTableCell>{row.telefono}</StyledTableCell>
-                            <StyledTableCell align="center">
-                                <div className='flex item-center justify-center'>
-                                    <Link to='/editar-cliente'>
-                                        <CiEdit size={30} />
-                                    </Link>
-                                    <MdDeleteForever onClick={alertDelete} size={30} style={{ cursor: 'pointer', marginLeft: '10px' }} />
-                                    <Link to='/conexion'>
-                                        <Button nombre="Conexión" />
-                                    </Link>
-                                </div>
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+            {clientes && clientes.length > 0 ? (
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>Apellido</StyledTableCell>
+                                <StyledTableCell>Nombre</StyledTableCell>
+                                <StyledTableCell>DNI</StyledTableCell>
+                                <StyledTableCell>Teléfono</StyledTableCell>
+                                <StyledTableCell align="center">Acciones</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {clientes.map((row) => (
+                                <StyledTableRow key={row.ID}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {row.apellido}
+                                    </StyledTableCell>
+                                    <StyledTableCell>{row.nombre}</StyledTableCell>
+                                    <StyledTableCell>{row.dni}</StyledTableCell>
+                                    <StyledTableCell>{row.telefono}</StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        <div className='flex item-center justify-center'>
+                                            <Link to='/editar-cliente'>
+                                                <CiEdit size={30} />
+                                            </Link>
+                                            <MdDeleteForever
+                                                onClick={alertDelete}
+                                                size={30}
+                                                style={{ cursor: 'pointer', marginLeft: '10px' }}
+                                            />
+                                            <Link to='/conexion'>
+                                                <Button nombre="Conexión" />
+                                            </Link>
+                                        </div>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            ) : (
+                <div className="text-center">
+                    <p>No hay clientes disponibles</p>
+                </div>
+            )}
         </div>
-
     );
 }

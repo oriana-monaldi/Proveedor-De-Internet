@@ -1,8 +1,8 @@
 import  {apiUrl} from './constants'
 
-export async function getClientes() {
+export async function getConexiones() {
 try { 
-    const response = await fetch(`${apiUrl}/clientes/all`)
+    const response = await fetch(`${apiUrl}/conexiones/all`)
     const data = await response.json()       
         return data
 } catch(error) {

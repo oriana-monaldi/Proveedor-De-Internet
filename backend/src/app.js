@@ -3,6 +3,7 @@ import { clienteRouter } from './routes/clientes.js';
 import { conexionRouter } from './routes/conexiones.js';
 import { visitaRouter } from './routes/visitas.js';
 import { PrismaClient } from '@prisma/client';
+import cors from 'cors';  
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,6 +12,7 @@ const app = express();
 export const prisma = new PrismaClient();
 
 app.use(express.json());
+app.use(cors({origin:'*'}))
 
 app.use('/api/clientes', clienteRouter);
 app.use('/api/conexiones', conexionRouter);

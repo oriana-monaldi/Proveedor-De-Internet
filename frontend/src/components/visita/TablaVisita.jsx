@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import swal from 'sweetalert'; 
+import { useEffect, useState } from 'react';
+import { getVisitas } from '../../../services/visitas';
 
 function alertDelete() {
     swal({
@@ -49,19 +51,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(fecha, hora, tecnico, observacion) {
-    return { fecha, hora, tecnico, observacion };
-}
-
-const rows = [
-    createData('2024-01-15', '10:00', 'Técnico A', 'Observación 1'),
-    createData('2024-02-10', '11:00', 'Técnico B', 'Observación 2'),
-    createData('2024-03-05', '12:00', 'Técnico C', 'Observación 3'),
-    createData('2024-04-20', '13:00', 'Técnico D', 'Observación 4'),
-    createData('2024-05-15', '14:00', 'Técnico E', 'Observación 5'),
-];
-
 export default function CustomizedTables() {
+    const [visitas, setVisitas] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect( () => {
+        setLoading(true);
+        getVisitas().then( (data) => {
+            setVisitas(data)
+            console.log(visitas)
+        }).finally( () => {
+            setLoading(false);
+        })
+    },[])
+
+    if (loading) {
+        return (
+            <div className="m-6 mt-16 flex justify-center items-center">
+                <p>Cargando visitas...</p>
+            </div>
+        );
+    }
     return (
         <div className='m-6 mt-16'>
             <TableContainer component={Paper}>
@@ -76,7 +86,7 @@ export default function CustomizedTables() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row, index) => (
+                        {visitas.map((row, index) => (
                             <StyledTableRow key={index}>
                                 <StyledTableCell component="th" scope="row">
                                     {row.fecha}

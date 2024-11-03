@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import swal from 'sweetalert'; 
+import { getConexiones } from '../../../services/conexiones';
+import { useEffect, useState } from 'react';
 
 function alertDelete() {
     swal({
@@ -50,19 +52,28 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(numero, fechaAlta, servicio, domicilio, localidad, provincia) {
-    return { numero, fechaAlta, servicio, domicilio, localidad, provincia };
-}
-
-const rows = [
-    createData(1, '2024-01-15', 'Servicio A', 'Calle Falsa 123', 'Ciudad A', 'Provincia A'),
-    createData(2, '2024-02-10', 'Servicio B', 'Calle Verdadera 456', 'Ciudad B', 'Provincia B'),
-    createData(3, '2024-03-05', 'Servicio C', 'Avenida Siempre Viva 789', 'Ciudad C', 'Provincia C'),
-    createData(4, '2024-04-20', 'Servicio D', 'Boulevard Ficticio 321', 'Ciudad D', 'Provincia D'),
-    createData(5, '2024-05-15', 'Servicio E', 'Plaza Imaginaria 654', 'Ciudad E', 'Provincia E'),
-];
-
 export default function CustomizedTables() {
+    const [conexiones, setConexiones] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect( () => {
+        setLoading(true);
+        getConexiones().then( (data) => {
+            setConexiones(data)
+                console.log(data)
+        }).finally( () => {
+            setLoading(false);
+        })
+    },[])
+    
+    if (loading) {
+        return (
+            <div className="m-6 mt-16 flex justify-center items-center">
+                <p>Cargando conexiones...</p>
+            </div>
+        );
+    }
+
     return (
         <div className='m-6 mt-16'>
             <TableContainer component={Paper}>
@@ -79,8 +90,8 @@ export default function CustomizedTables() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.numero}>
+                        {conexiones.map((row) => (
+                            <StyledTableRow key={row.ID}>
                                 <StyledTableCell component="th" scope="row">
                                     {row.numero}
                                 </StyledTableCell>
