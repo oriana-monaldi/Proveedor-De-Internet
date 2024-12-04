@@ -119,7 +119,7 @@ export default function CustomizedTables() {
                 </TableContainer>
             ) : (
                 <div className="text-center">
-                    <p>No hay clientes disponibles</p>
+                    <p className='text-white'>No hay clientes disponibles</p>
                 </div>
             )}
         </div>
