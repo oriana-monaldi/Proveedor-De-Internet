@@ -1,10 +1,11 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '../Boton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { addCliente } from '../../../services/clientes';
 
 function AltaCliente() {
+    const navigate = useNavigate();
     function handleForm(e) {
         e.preventDefault()
         const nombre = document.getElementById("nombre").value
@@ -17,6 +18,7 @@ function AltaCliente() {
             dni: Number(dni),
             telefono: Number(telefono),
         })
+        navigate('/cliente');
     }
     return (
         <div className="min-h-screen flex items-center justify-center">
