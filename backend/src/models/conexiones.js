@@ -27,9 +27,21 @@ export class ConexionModel{
     }
     
     static async byId(id){
-        return await prisma.conexion.findUnique({
+        return await prisma.conexion.findMany({
             where: {
                 ID: parseInt(id)
+            },
+            include: {
+                servicio: true,
+                domicilio: {
+                    include: {
+                        localidad: {
+                            include: {
+                                provincia: true
+                            }
+                        }
+                    }
+                }
             }
         })
     }

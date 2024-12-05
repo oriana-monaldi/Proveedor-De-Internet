@@ -52,15 +52,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export default function CustomizedTables() {
+export default function CustomizedTables({id}) {
     const [conexiones, setConexiones] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect( () => {
         setLoading(true);
-        getConexiones().then( (data) => {
+        getConexiones(id).then( (data) => {
             setConexiones(data)
-                console.log(data)
         }).finally( () => {
             setLoading(false);
         })
