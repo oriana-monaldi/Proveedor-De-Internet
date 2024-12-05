@@ -1,5 +1,19 @@
 import  {apiUrl} from './constants'
 
+export async function deleteCliente(id){
+    try {
+        const response = await fetch(`${apiUrl}/clientes/${id}`, {
+            method: 'DELETE',
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${data.message}`);
+        }
+    } catch (error) {
+        console.error("Error al eliminar al cliente",  error );
+    }
+}
+
 export async function getClientes() {
     try { 
         const response = await fetch(`${apiUrl}/clientes/all`)

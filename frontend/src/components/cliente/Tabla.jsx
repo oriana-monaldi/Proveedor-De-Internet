@@ -13,8 +13,11 @@ import { MdDeleteForever } from "react-icons/md";
 import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import { getClientes } from '../../../services/clientes';
+import { deleteCliente } from '../../../services/clientes';
 
-function alertDelete() {
+function alertDelete(id) {
+    deleteCliente(id);
+    console.log(id)
     swal({
         title: "¿Esta seguro que desea eliminar el cliente?",
         text: "Si decide eliminarlo no podrá recuperarlo",
@@ -23,9 +26,15 @@ function alertDelete() {
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
-            swal("Se ha eliminado exitosamente", {
-                icon: "success",
-            });
+            try {
+                swal("Se ha eliminado exitosamente", {
+                    icon: "success",
+                });
+            } catch (error) {
+                swal("Error al eliminar el cliente", {
+                    icon: "error",
+                });
+            }
         } else {
             swal("El cliente no se ha eliminado");
         }
@@ -103,7 +112,7 @@ export default function CustomizedTables() {
                                                 <CiEdit size={30} />
                                             </Link>
                                             <MdDeleteForever
-                                                onClick={alertDelete}
+                                                onClick={()=>alertDelete(row.ID)}
                                                 size={30}
                                                 style={{ cursor: 'pointer', marginLeft: '10px' }}
                                             />
