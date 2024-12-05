@@ -1,4 +1,3 @@
-import React from 'react'
 import Tabla from './Tabla'
 import { IoAddCircle } from "react-icons/io5";
 import  {Link} from 'react-router-dom'

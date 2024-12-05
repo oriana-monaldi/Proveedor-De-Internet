@@ -21,6 +21,7 @@ function App() {
         <Route path='/alta-cliente' element={<AltaCliente/>}></Route>
         <Route path='/editar-cliente' element={<EditarCliente/>}></Route>
         <Route path='/conexion' element={<Conexion/>}></Route>
+        <Route path='cliente/conexion/:id' element={<Conexion/>}></Route>
         <Route path='/alta-conexion' element={<AltaConexion/>}></Route>
         <Route path='/editar-conexion' element={<EditarConexion/>}></Route>
         <Route path='/visita' element={<Visita/>}></Route>
