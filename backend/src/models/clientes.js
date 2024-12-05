@@ -29,6 +29,7 @@ export class ClienteModel{
     }
 
     static async delete(id){
+        console.log(id)
         return prisma.cliente.delete({
             where: {
                 ID: parseInt(id)
