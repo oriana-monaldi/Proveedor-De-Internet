@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '../Boton';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import swal from 'sweetalert';
@@ -59,7 +59,6 @@ export default function CustomizedTables() {
         setLoading(true);
         getClientes().then( (data) => {
             setClientes(data)
-            console.log(clientes)
         }).finally( () => {
             setLoading(false);
         })
@@ -107,7 +106,7 @@ export default function CustomizedTables() {
                                                 size={30}
                                                 style={{ cursor: 'pointer', marginLeft: '10px' }}
                                             />
-                                            <Link to='/conexion'>
+                                            <Link to={`conexion/${row.ID}`}>
                                                 <Button nombre="Conexión" />
                                             </Link>
                                         </div>
