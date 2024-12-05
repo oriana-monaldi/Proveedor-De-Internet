@@ -1,7 +1,5 @@
 import Tabla from './Tabla'
 
-import  {Link} from 'react-router-dom'
-
 function Cliente() {
     return (
       <div className="max-w-[1400px] mx-auto ">
