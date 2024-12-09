@@ -135,7 +135,7 @@ export default function CustomizedTables() {
                                     </StyledTableCell>
                                     <StyledTableCell align="center">
                                         <div className="flex item-center justify-center">
-                                            <Link to="/editar-cliente">
+                                            <Link to={`/editar-cliente/${row.ID}`}>
                                                 <CiEdit size={30} />
                                             </Link>
                                             <MdDeleteForever

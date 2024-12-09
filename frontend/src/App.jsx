@@ -19,7 +19,7 @@ function App() {
         <Route path='/' element={<Main/>}></Route>
         <Route path='/cliente' element={<Cliente/>}></Route>
         <Route path='/alta-cliente' element={<AltaCliente/>}></Route>
-        <Route path='/editar-cliente' element={<EditarCliente/>}></Route>
+        <Route path='/editar-cliente/:id' element={<EditarCliente/>}></Route>
         <Route path='cliente/conexion/:id' element={<Conexion/>}></Route>
         <Route path='/alta-conexion' element={<AltaConexion/>}></Route>
         <Route path='/editar-conexion' element={<EditarConexion/>}></Route>
