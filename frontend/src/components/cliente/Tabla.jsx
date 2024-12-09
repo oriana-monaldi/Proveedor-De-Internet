@@ -15,8 +15,9 @@ import { useEffect, useState } from "react";
 import { getClientes } from "../../../services/clientes";
 import SearchComponent from "../Buscar";
 import { IoAddCircle } from "react-icons/io5";
+import { deleteCliente } from "../../../services/clientes";
 
-function alertDelete() {
+function alertDelete(id) {
     swal({
         title: "¿Esta seguro que desea eliminar el cliente?",
         text: "Si decide eliminarlo no podrá recuperarlo",
@@ -25,14 +26,17 @@ function alertDelete() {
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
+            deleteCliente(id);
             swal("Se ha eliminado exitosamente", {
                 icon: "success",
+            }).then(() => {
+                window.location.reload();
             });
         } else {
             swal("El cliente no se ha eliminado");
         }
-    });
-}
+    })
+};
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -64,7 +68,6 @@ export default function CustomizedTables() {
             .then((data) => {
                 setClientes(data);
                 setFilteredClientes(data);
-                console.log(data);
             })
             .finally(() => {
                 setLoading(false);
@@ -135,11 +138,13 @@ export default function CustomizedTables() {
                                     </StyledTableCell>
                                     <StyledTableCell align="center">
                                         <div className="flex item-center justify-center">
-                                            <Link to="/editar-cliente">
+                                            <Link to={`/editar-cliente/${row.ID}`}>
                                                 <CiEdit size={30} />
                                             </Link>
                                             <MdDeleteForever
-                                                onClick={alertDelete}
+                                                onClick={() =>
+                                                    alertDelete(row.ID)
+                                                }
                                                 size={30}
                                                 style={{
                                                     cursor: "pointer",
