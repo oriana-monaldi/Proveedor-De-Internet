@@ -15,9 +15,9 @@ const updateClient = async (updatedClient) => {
             },
             body: JSON.stringify({
                 apellido: updatedClient.apellido,
-                dni: updatedClient.dni,
+                dni: Number(updatedClient.dni),
                 nombre: updatedClient.nombre,
-                telefono: updatedClient.telefono,
+                telefono: Number(updatedClient.telefono),
             }),
         });
 
