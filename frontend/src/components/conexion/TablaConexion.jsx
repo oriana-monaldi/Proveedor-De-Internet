@@ -59,6 +59,7 @@ export default function CustomizedTables({id}) {
     useEffect( () => {
         setLoading(true);
         getConexiones(id).then( (data) => {
+            console.log(data);
             setConexiones(data)
         }).finally( () => {
             setLoading(false);

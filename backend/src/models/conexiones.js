@@ -29,7 +29,7 @@ export class ConexionModel{
     static async byId(id){
         return await prisma.conexion.findMany({
             where: {
-                ID: parseInt(id)
+                clienteID: parseInt(id)
             },
             include: {
                 servicio: true,

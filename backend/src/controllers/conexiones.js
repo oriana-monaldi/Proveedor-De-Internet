@@ -16,6 +16,7 @@ export class ConexionController {
 
         try{
             const connection = await ConexionModel.byId(id);
+            console.log(connection);
             res.status(200).json(connection);
         }catch(err){
             res.status(500).json({message: err.message});
