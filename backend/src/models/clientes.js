@@ -20,6 +20,7 @@ export class ClienteModel{
     }
 
     static async update(id, cliente){
+        console.log(id, cliente)
         return prisma.cliente.update({
             where: {
                 ID: parseInt(id)
